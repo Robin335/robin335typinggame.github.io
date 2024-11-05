@@ -14,27 +14,40 @@ body {
   justify-content: center;
   min-height: 100vh;
   background-image: url("background.png");
+  flex-direction: column; /* Allow vertical stacking of the navbar and main content */
 }
 
-.nav {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 150px;
-  height: 525px;
-  padding: 20px;
-  color: white;
-  font-weight: bolder;
-  font-style: italic;
-  font-family: 'Courier New', Courier, monospace;
-  background: rgb(35, 39, 36);
+/* Navigation Bar Styles */
+.navbar {
+  background-color: #0baa4d;
+  color: #fff;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed; /* Fixed position to keep it at the top */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  right: 0; /* Align to the right */
+  z-index: 1000; /* Ensure it is above other content */
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.level-selection label {
+  margin-right: 15px;
 }
 
 .wrapper {
-  width: 770px;
+  width: 800px;
+  height: 400px;
   padding: 35px;
-  background: #fff;
+  background: #b8b1b1;
   border-radius: 10px;
+  margin-top: 80px; /* Add margin to push down the content below the navbar */
 }
 
 /* Progress Bar */
@@ -144,7 +157,12 @@ body {
 }
 
 .content-box .content .cpm span {
-  color: green;
+  color: green; /* Keep green for the CPM */
+  font-weight: bold; /* Make the text bold */
+  font-size: 20px; /* Increase font size */
+  background-color: rgba(255, 255, 255, 0.8); /* Optional: Add a slight background for contrast */
+  padding: 2px 4px; /* Optional: Add some padding for better spacing */
+  border-radius: 4px; /* Optional: Rounded corners */
 }
 
 .content button {
@@ -200,4 +218,25 @@ body {
 .result-details li b {
   font-weight: 500;
 }
+.achievement-message {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #e0f7fa; /* Light blue background */
+  color: #00796b; /* Teal text */
+  text-align: center;
+  font-size: 1.2em;
+  display: none; /* Initially hidden */
+  transition: opacity 0.5s ease;
+}
 
+/* Show the message */
+.show {
+  display: block;
+  opacity: 1;
+}
+
+/* Optional: hide after a few seconds */
+.hide {
+  opacity: 0;
+}
