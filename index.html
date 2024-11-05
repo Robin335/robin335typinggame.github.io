@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<!--Coding by Devcamp-->
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="utf-8">
-    <title>Typing Speed Game in html|css|js</title>
+    <title>Typing Speed Game in HTML, CSS, and JavaScript</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body> 
     <div class="wrapper">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        
         <input type="text" class="input-field">
+        
         <div class="content-box">
             <div class="typing-text">
                 <p></p>
@@ -26,22 +29,25 @@
                         <p>Mistakes:</p>
                         <span>0</span>
                     </li>
+                    <li class="accuracy">
+                        <p>Accuracy:</p>
+                        <span>100%</span>
+                    </li>
                     <li class="wpm">
                         <p>WPM:</p>
                         <span>0</span>
                     </li>
                     <li class="cpm">
-                        <p>cpm:</p>
+                        <p>CPM:</p>
                         <span>0</span>
                     </li>
                 </ul>
-                <button>Try again</button>
+                <button>Try Again</button>
             </div>
         </div>
     </div>
+    
     <script src="javascript/paragraph.js"></script>
     <script src="javascript/script.js"></script>
-    </div>
 </body>
-
 </html>
