@@ -22,8 +22,8 @@ const levelCriteria = {
   easy: { minWPM: 30, minAccuracy: 80 },
   medium: { minWPM: 50, minAccuracy: 85 },
   hard: { minWPM: 70, minAccuracy: 90 },
-  expert: { minWPM: 90, minAccuracy: 92 }, // Expert level criteria
-  master: { minWPM: 110, minAccuracy: 95 } // Master level criteria
+  expert: { minWPM: 90, minAccuracy: 92 },
+  master: { minWPM: 110, minAccuracy: 95 }
 };
 
 // Function to get selected difficulty level
@@ -32,6 +32,17 @@ function getSelectedLevel() {
   for (const level of levels) {
     if (level.checked) {
       return level.value;
+    }
+  }
+}
+
+// Function to set a specific level
+function setLevel(level) {
+  const levels = document.getElementsByName('level');
+  for (const levelElement of levels) {
+    if (levelElement.value === level) {
+      levelElement.checked = true;
+      break;
     }
   }
 }
@@ -73,8 +84,8 @@ function notifyUser(message) {
 
   setTimeout(() => {
     achievementMessage.classList.remove('show');
-    achievementMessage.innerText = ''; // Clear the message after hiding
-  }, 3000); // Message will disappear after 3 seconds
+    achievementMessage.innerText = '';
+  }, 3000);
 }
 
 // Function to advance to the next level
@@ -84,8 +95,9 @@ function advanceToNextLevel() {
 
   if (currentLevelIndex < levels.length - 1) {
     const nextLevel = levels[currentLevelIndex + 1];
+    setLevel(nextLevel);
     notifyUser(`You are now at the ${nextLevel} level!`);
-    // Implement logic to set the next level if necessary
+    resetGame(); // Reset game for the next level
   } else {
     notifyUser("You've reached the highest level!");
   }
@@ -97,7 +109,6 @@ function initTyping() {
   let typedChar = inputField.value.split('')[charIndex];
 
   if (charIndex < characters.length - 1 && timeLeft > 0) {
-    // Start timer only when user starts typing
     if (!isTyping && inputField.value.length > 0) {
       timer = setInterval(initTimer, 1000);
       isTyping = true;
@@ -124,22 +135,20 @@ function initTyping() {
       characters[charIndex].classList.add('active');
     }
 
-    // Calculate WPM and CPM
     let wpm = Math.round((((charIndex - mistakes) / 5) / (maxTime - timeLeft)) * 60);
     wpm = wpm < 0 || !wpm || wpm === Infinity ? 0 : wpm;
 
-    let cpm = charIndex - mistakes; // Calculate CPM
+    let cpm = charIndex - mistakes;
 
-    // Display results
     timeTag.innerText = timeLeft;
     mistakeTag.innerText = mistakes;
     accuracyTag.innerText = Math.round(((charIndex - mistakes) / charIndex) * 100) || 0;
     wpmTag.innerText = wpm;
-    cpmTag.innerText = cpm; // Display CPM
+    cpmTag.innerText = cpm;
   } else {
     clearInterval(timer);
     inputField.disabled = true;
-    checkLevelPass(); // Check if the user passed the level when time is up
+    checkLevelPass();
   }
 }
 
@@ -151,7 +160,7 @@ function initTimer() {
     if (timeLeft === 0) {
       clearInterval(timer);
       inputField.disabled = true;
-      checkLevelPass(); // Check if the user passed the level when time is up
+      checkLevelPass();
     }
   }
 }
@@ -160,19 +169,19 @@ function initTimer() {
 function resetGame() {
   charIndex = 0;
   mistakes = 0;
-  timeLeft = maxTime; // Reset time left to maxTime
+  timeLeft = maxTime;
   isTyping = false;
-  randomParagraph(); // Select a random paragraph based on the current difficulty
+  randomParagraph();
   inputField.value = '';
   clearInterval(timer);
   timeTag.innerHTML = maxTime;
   mistakeTag.innerText = 0;
   accuracyTag.innerText = 100;
   wpmTag.innerText = 0;
-  cpmTag.innerText = 0; // Reset CPM to 0
+  cpmTag.innerText = 0;
   progressBar.style.width = '0%';
   inputField.disabled = false;
-  inputField.focus(); // Focus the input field after resetting
+  inputField.focus();
 }
 
 // Initialize the game with a random paragraph
@@ -181,3 +190,9 @@ randomParagraph();
 // Add event listeners
 inputField.addEventListener('input', initTyping);
 tryAgainbtn.addEventListener('click', resetGame);
+
+// Event listener for the Start Game button
+document.getElementById('start-game-btn').addEventListener('click', () => {
+  resetGame();
+  randomParagraph();
+});
