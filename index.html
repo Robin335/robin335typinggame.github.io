@@ -13,51 +13,63 @@
             <label><input type="radio" name="level" value="easy" checked> Easy</label>
             <label><input type="radio" name="level" value="medium"> Medium</label>
             <label><input type="radio" name="level" value="hard"> Hard</label>
+            <label><input type="radio" name="level" value="expert"> Expert</label> <!-- New Expert level -->
+            <label><input type="radio" name="level" value="master"> Master</label> <!-- New Master level -->
         </div>
         <button id="start-game-btn">Start Game</button>
     </div>
 
-    <div class="wrapper">
-        <!-- Progress Bar -->
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
-        
-        <input type="text" class="input-field">
-        
-        <div class="content-box">
-            <div class="typing-text">
-                <p></p>
-            </div>
-            <div class="content">
-                <ul class="result-details">
-                    <li class="time">
-                        <p>Time left:</p>
-                        <span><b>60</b>s</span>
-                    </li>
-                    <li class="mistake">
-                        <p>Mistakes:</p>
-                        <span>0</span>
-                    </li>
-                    <li class="accuracy">
-                        <p>Accuracy:</p>
-                        <span>100%</span>
-                    </li>
-                    <li class="wpm">
-                        <p>WPM:</p>
-                        <span>0</span>
-                    </li>
-                    <li class="cpm">
-                        <p>CPM:</p>
-                        <span>0</span>
-                    </li>
-                </ul>
-                <!--<button>Try Again</button> -->
-            </div>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Helpful Articles</h2>
+            <ul>
+                <li><a href="article1.html">How to Improve Typing Speed</a></li>
+                <li><a href="article2.html">The Benefits of Touch Typing</a></li>
+                <li><a href="article3.html">Typing Techniques for Beginners</a></li>
+                <li><a href="article4.html">Maintaining Good Posture While Typing</a></li>
+                <li><a href="article5.html">Typing Tests: How They Work</a></li>
+            </ul>
         </div>
 
-        <!-- Achievement Message -->
-        <div class="achievement-message"></div>
+        <div class="wrapper">
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            
+            <input type="text" class="input-field">
+            
+            <div class="content-box">
+                <div class="typing-text">
+                    <p></p>
+                </div>
+                <div class="content">
+                    <ul class="result-details">
+                        <li class="time">
+                            <p>Time left:</p>
+                            <span><b>60</b>s</span>
+                        </li>
+                        <li class="mistake">
+                            <p>Mistakes:</p>
+                            <span>0</span>
+                        </li>
+                        <li class="accuracy">
+                            <p>Accuracy:</p>
+                            <span>100%</span>
+                        </li>
+                        <li class="wpm">
+                            <p>WPM:</p>
+                            <span>0</span>
+                        </li>
+                        <li class="cpm">
+                            <p>CPM:</p>
+                            <span>0</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="achievement-message"></div>
+        </div>
     </div>
 
     <script src="javascript/paragraph.js"></script>
