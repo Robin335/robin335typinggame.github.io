@@ -10,17 +10,16 @@
 
 body {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: flex-start;
   min-height: 100vh;
-  /*background-image: url("background.png"); */
   background-color: #ebf3f2;
   flex-direction: column; /* Allow vertical stacking of the navbar and main content */
 }
 
 /* Navigation Bar Styles */
 .navbar {
-  background-color: #0baa4d;
+  background-color: #06432b;
   color: #fff;
   padding: 15px;
   display: flex;
@@ -42,13 +41,61 @@ body {
   margin-right: 15px;
 }
 
+.container {
+  display: flex;
+  align-items: flex-start; /* Align the sidebar and content to the top */
+  justify-content: center; /* Center the main content */
+  margin-top: 80px; /* Space for the navbar */
+  width: 100%; /* Full width of the screen */
+  max-width: 1200px; /* Optional: limit max width for large screens */
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 200px; /* Width of the sidebar */
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  position: absolute; /* Position the sidebar to the far left */
+  left: 10px; /* Align the sidebar to the left */
+  top: 80px; /* Align below the navbar */
+}
+
+.sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 8px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #17a2b8;
+  transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+  color: #0b8a9a;
+}
+
+/* Main Content Wrapper */
 .wrapper {
-  width: 800px;
-  height: 400px;
+  flex: 1; /* Allow the wrapper to take the remaining space */
   padding: 35px;
   background: #b8b1b1;
   border-radius: 10px;
-  margin-top: 80px; /* Add margin to push down the content below the navbar */
+  margin-left: 400px; /* Push the wrapper to the right so it doesn't overlap the sidebar */
+  margin-top: 20px; /* Space for the navbar */
+  top: 0;
+  height: max-content;
+  max-width: 800px; /* Optional: limit width of the content */
 }
 
 /* Progress Bar */
@@ -143,7 +190,6 @@ body {
   justify-content: space-between;
 }
 
-/* Countdown Warning */
 .content-box .content .time.warning span {
   color: red;
   font-weight: bold;
@@ -158,12 +204,12 @@ body {
 }
 
 .content-box .content .cpm span {
-  color: green; /* Keep green for the CPM */
-  font-weight: bold; /* Make the text bold */
-  font-size: 20px; /* Increase font size */
-  background-color: rgba(255, 255, 255, 0.8); /* Optional: Add a slight background for contrast */
-  padding: 2px 4px; /* Optional: Add some padding for better spacing */
-  border-radius: 4px; /* Optional: Rounded corners */
+  color: green;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2px 4px;
+  border-radius: 4px;
 }
 
 .content button {
@@ -219,15 +265,16 @@ body {
 .result-details li b {
   font-weight: 500;
 }
+
 .achievement-message {
   margin-top: 20px;
   padding: 10px;
   border-radius: 5px;
-  background-color: #e0f7fa; /* Light blue background */
-  color: #00796b; /* Teal text */
+  background-color: #e0f7fa;
+  color: #00796b;
   text-align: center;
   font-size: 1.2em;
-  display: none; /* Initially hidden */
+  display: none;
   transition: opacity 0.5s ease;
 }
 
@@ -237,7 +284,42 @@ body {
   opacity: 1;
 }
 
-/* Optional: hide after a few seconds */
 .hide {
   opacity: 0;
+}
+/* Highlight selected level */
+.level-selection label input[type="radio"]:checked + span {
+  font-weight: bold;
+  color: #17a2b8; /* Highlight color */
+}
+
+/* Dynamic achievement message style */
+.achievement-message {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #e0f7fa;
+  color: #00796b;
+  text-align: center;
+  font-size: 1.2em;
+  display: none; /* Initially hidden */
+  transition: opacity 0.5s ease;
+  position: relative; /* For positioning */
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+/* Show the message */
+.show {
+  display: block;
+  opacity: 1;
+}
+
+/* Optional: Styling for hover effects on buttons */
+.content button:hover {
+  background-color: #138496; /* Darker shade on hover */
+}
+
+/* Improved styling for typing text */
+.typing-text p span {
+  transition: color 0.3s; /* Smooth transition for color changes */
 }
