@@ -21,7 +21,9 @@ let timer,
 const levelCriteria = {
   easy: { minWPM: 30, minAccuracy: 80 },
   medium: { minWPM: 50, minAccuracy: 85 },
-  hard: { minWPM: 70, minAccuracy: 90 }
+  hard: { minWPM: 70, minAccuracy: 90 },
+  expert: { minWPM: 90, minAccuracy: 92 }, // Expert level criteria
+  master: { minWPM: 110, minAccuracy: 95 } // Master level criteria
 };
 
 // Function to get selected difficulty level
@@ -56,7 +58,7 @@ function checkLevelPass() {
   let accuracy = Math.round(((charIndex - mistakes) / charIndex) * 100) || 0;
 
   if (wpm >= criteria.minWPM && accuracy >= criteria.minAccuracy) {
-    notifyUser(`Congratulations! You've passed the level!`); // Change made here
+    notifyUser(`Congratulations! You've passed the level!`);
     advanceToNextLevel();
   } else {
     notifyUser(`You did not pass the ${selectedLevel} level. Try again!`);
@@ -69,7 +71,6 @@ function notifyUser(message) {
   achievementMessage.innerText = message;
   achievementMessage.classList.add('show');
 
-  // Optionally hide the message after a few seconds
   setTimeout(() => {
     achievementMessage.classList.remove('show');
     achievementMessage.innerText = ''; // Clear the message after hiding
@@ -78,13 +79,15 @@ function notifyUser(message) {
 
 // Function to advance to the next level
 function advanceToNextLevel() {
-  const levels = ['easy', 'medium', 'hard'];
+  const levels = ['easy', 'medium', 'hard', 'expert', 'master'];
   const currentLevelIndex = levels.indexOf(getSelectedLevel());
 
   if (currentLevelIndex < levels.length - 1) {
     const nextLevel = levels[currentLevelIndex + 1];
     notifyUser(`You are now at the ${nextLevel} level!`);
     // Implement logic to set the next level if necessary
+  } else {
+    notifyUser("You've reached the highest level!");
   }
 }
 
