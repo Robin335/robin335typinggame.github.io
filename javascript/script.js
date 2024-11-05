@@ -4,102 +4,103 @@ const typingText = document.querySelector('.typing-text p'),
   inputField = document.querySelector('.wrapper .input-field'),
   timeTag = document.querySelector('.time span b'),
   mistakeTag = document.querySelector('.mistake span'),
+  accuracyTag = document.querySelector('.accuracy span'),
   wpmTag = document.querySelector('.wpm span'),
   cpmTag = document.querySelector('.cpm span'),
-  tryAgainbtn = document.querySelector('button');
+  tryAgainbtn = document.querySelector('button'),
+  progressBar = document.querySelector('.progress');
 
 let timer,
   maxTime = 60,
   timeLeft = maxTime,
-  charIndex = mistakes = isTyping = 0
+  charIndex = mistakes = isTyping = 0;
 
 function randomParagraph() {
-  // getting random number and it will always start than the paragraph
-  let randIndex = Math.floor(Math.random() * paragraphs.length)
+  let randIndex = Math.floor(Math.random() * paragraphs.length);
   typingText.innerHTML = "";
-  // getting random item from the paragraphs array, splitting all charecters
-  // of it adding each charecter inside sapn and then adding this inside p tag
   paragraphs[randIndex].split('').forEach(span => {
-    spanTag = `<span>${span}</span>`
-    typingText.innerHTML += spanTag
-  })
-  typingText.querySelectorAll('span')[0].classList.add('active')
-  // focusing input field on keydown or click text
-  document.addEventListener('keydown', () => inputField.focus())
-  typingText.addEventListener('click', () => inputField.focus())
+    spanTag = `<span>${span}</span>`;
+    typingText.innerHTML += spanTag;
+  });
+  typingText.querySelectorAll('span')[0].classList.add('active');
+  document.addEventListener('keydown', () => inputField.focus());
+  typingText.addEventListener('click', () => inputField.focus());
 }
 
 function initTyping() {
-  const charecters = typingText.querySelectorAll('span')
-  let typedChar = inputField.value.split('')[charIndex]
-  if (charIndex < charecters.length - 1 && timeLeft > 0) {
-    if (!isTyping) { //once timer is start, it wont restart again on every key clicked
-      timer = setInterval(initTimer, 1000)
-      isTyping = true
+  const characters = typingText.querySelectorAll('span');
+  let typedChar = inputField.value.split('')[charIndex];
+
+  if (charIndex < characters.length - 1 && timeLeft > 0) {
+    if (!isTyping) {
+      timer = setInterval(initTimer, 1000);
+      isTyping = true;
     }
 
-    isTyping = true;
-    // if user hasent entered any charecter or pressed backspace
     if (typedChar == null) {
-      charIndex-- //decrement charIdex
-      //document mistakes only if the charIndex span contains inocrrect class
-      if (charecters[charIndex].classList.contains('incorrect')) {
-        mistakes--
-      }
-      charecters[charIndex].classList.remove('correct', 'incorrect')
+      if (characters[charIndex].classList.contains('incorrect')) mistakes--;
+      characters[charIndex].classList.remove('correct', 'incorrect');
+      charIndex--;
     } else {
-      if (charecters[charIndex].innerText === typedChar) {
-        // if user typed charecter and shown charecter matched the and
-        // correct class else increment the mistakes  add the incorrect class
-        charecters[charIndex].classList.add("correct")
+      if (characters[charIndex].innerText === typedChar) {
+        characters[charIndex].classList.add("correct");
       } else {
-        mistakes++
-        charecters[charIndex].classList.add("incorrect")
+        mistakes++;
+        characters[charIndex].classList.add("incorrect");
       }
-      charIndex++ // increment chaindex either user typed correct or wrong
+      charIndex++;
     }
 
-    charecters.forEach(span => span.classList.remove('active'))
-    charecters[charIndex].classList.add('active')
+    characters.forEach(span => span.classList.remove('active'));
+    characters[charIndex].classList.add('active');
 
     let wpm = Math.round((((charIndex - mistakes) / 5) / (maxTime - timeLeft)) * 60);
-    //if wpm value is 0, empty, or infinity then setting it is value to 0
     wpm = wpm < 0 || !wpm || wpm === Infinity ? 0 : wpm;
+
+    let accuracy = Math.round(((charIndex - mistakes) / charIndex) * 100);
+    accuracy = isNaN(accuracy) || accuracy < 0 ? 100 : accuracy;
 
     mistakeTag.innerText = mistakes;
     wpmTag.innerText = wpm;
-    cpmTag.innerText = charIndex - mistakes; //cpm will not count mistakes
+    cpmTag.innerText = charIndex - mistakes;
+    accuracyTag.innerText = `${accuracy}%`;
   } else {
-    inputField.value = ""
-    clearInterval(timer)
+    inputField.value = "";
+    clearInterval(timer);
   }
-
-
 }
 
 function initTimer() {
   if (timeLeft > 0) {
     timeLeft--;
     timeTag.innerText = timeLeft;
+
+    progressBar.style.width = `${(timeLeft / maxTime) * 100}%`;
+    if (timeLeft < 10) {
+      timeTag.parentElement.classList.add('warning');
+    } else {
+      timeTag.parentElement.classList.remove('warning');
+    }
   } else {
-    clearInterval(timer)
+    clearInterval(timer);
   }
 }
 
-//function of trybtn
-function reseGame() {
-  //calling loadParagraph function and
-  //resetting each variable and elements value to default
+function resetGame() {
   randomParagraph();
   inputField.value = "";
   clearInterval(timer);
   timeLeft = maxTime;
   charIndex = mistakes = isTyping = 0;
   timeTag.innerText = timeLeft;
+  progressBar.style.width = "100%";
   mistakeTag.innerText = mistakes;
   wpmTag.innerText = 0;
   cpmTag.innerText = 0;
+  accuracyTag.innerText = "100%";
+  timeTag.parentElement.classList.remove('warning');
 }
-randomParagraph()
-inputField.addEventListener('input', initTyping)
-tryAgainbtn.addEventListener('click', reseGame)
+
+randomParagraph();
+inputField.addEventListener('input', initTyping);
+tryAgainbtn.addEventListener('click', resetGame);
