@@ -13,7 +13,8 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-image: url("background.png");
+  /*background-image: url("background.png"); */
+  background-color: #ebf3f2;
   flex-direction: column; /* Allow vertical stacking of the navbar and main content */
 }
 
