@@ -10,17 +10,24 @@
     <div class="navbar">
         <h1>Typing Speed Game</h1>
         <div class="level-selection">
-            <label><input type="radio" name="level" value="easy" checked> Easy</label>
-            <label><input type="radio" name="level" value="medium"> Medium</label>
-            <label><input type="radio" name="level" value="hard"> Hard</label>
-            <label><input type="radio" name="level" value="expert"> Expert</label>
-            <label><input type="radio" name="level" value="master"> Master</label>
+            <label data-level="easy"><input type="radio" name="level" value="easy" checked> Easy</label>
+            <label data-level="medium"><input type="radio" name="level" value="medium"> Medium</label>
+            <label data-level="hard"><input type="radio" name="level" value="hard"> Hard</label>
+            <label data-level="expert"><input type="radio" name="level" value="expert"> Expert</label>
+            <label data-level="master"><input type="radio" name="level" value="master"> Master</label>
         </div>
-        <button id="start-game-btn">Start Game</button>
+        <button id="start-game-btn">Reset Game</button>
+        <button id="mute-btn">Mute</button>
+
     </div>
 
     <div class="marquee">
         <p>Welcome to the Typing Speed Game! Improve your skills while having fun!</p>
+    </div>
+    <div class="user-info">
+        <label for="username">Enter Your Name: </label>
+        <input type="text" id="username" placeholder="Your Name">
+        <button id="start-game-btnz">Start Game</button>
     </div>
     
     <div class="container">
@@ -36,10 +43,18 @@
         </div>
 
         <div class="wrapper">
+            <!-- Progress Bar -->
             <div class="progress-bar">
                 <div class="progress"></div>
             </div>
             
+            <!-- Level Requirements Display -->
+            <div class="level-requirements">
+                <p>Level Requirements:</p>
+                <p id="level-criteria">WPM: - | Accuracy: -%</p>
+            </div>
+            
+            <!-- Input Field -->
             <input type="text" class="input-field">
             
             <div class="content-box">
@@ -74,6 +89,20 @@
 
             <div class="achievement-message"></div>
         </div>
+        <!-- Modal structure for displaying results -->
+<div id="resultsModal" class="modal">
+    <div class="modal-content">
+      <h2>Game Results</h2>
+      <p id="player-name"></p>
+      <p id="player-level"></p>
+      <p id="player-wpm"></p>
+      <p id="player-accuracy"></p>
+      <p id="player-mistakes"></p>
+      <p id="player-time"></p>
+      <button id="close-modal-btn">Close</button>
+    </div>
+  </div>
+  
     </div>
 
     <script src="javascript/paragraph.js"></script>
