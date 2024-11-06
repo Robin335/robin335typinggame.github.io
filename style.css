@@ -48,7 +48,7 @@ body {
   overflow: hidden; /* Hide overflowing content */
   white-space: nowrap; /* Prevent wrapping of text */
   position: fixed; /* Fixed position for the marquee */
-  top: 60px; /* Adjust to be just below the navbar */
+  top: 75px; /* Adjust to be just below the navbar */
   left: 0; /* Align to the left */
   right: 0; /* Align to the right */
   height: 40px; /* Height of the marquee */
@@ -88,7 +88,7 @@ body {
   border-radius: 8px;
   position: absolute; /* Position the sidebar to the far left */
   left: 10px; /* Align the sidebar to the left */
-  top: 80px; /* Align below the navbar */
+  top: 95px; /* Align below the navbar */
 }
 
 .sidebar h2 {
