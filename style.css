@@ -335,3 +335,39 @@ body {
 .typing-text p span {
   transition: color 0.6s; /* Smooth transition for color changes */
 }
+#start-game-btn {
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #17a2b8; /* Primary button color */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+#start-game-btn:hover {
+  background-color: #138496; /* Darker shade on hover */
+}
+
+#start-game-btn:active {
+  transform: scale(0.95); /* Slight "pressed" effect */
+}
+
+#start-game-btn:focus {
+  outline: 2px solid #138496; /* Highlight on focus */
+}
+
+#start-game-btn::after {
+  content: "▶";
+  font-size: 14px;
+  margin-left: 10px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+#start-game-btn:hover::after {
+  transform: translateX(4px); /* Arrow moves slightly on hover */
+}
