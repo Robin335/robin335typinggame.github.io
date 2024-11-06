@@ -41,11 +41,41 @@ body {
   margin-right: 15px;
 }
 
+/* Marquee Styles */
+.marquee {
+  background-color: #17b83a; /* Background color for the marquee */
+  color: white; /* Text color */
+  overflow: hidden; /* Hide overflowing content */
+  white-space: nowrap; /* Prevent wrapping of text */
+  position: fixed; /* Fixed position for the marquee */
+  top: 60px; /* Adjust to be just below the navbar */
+  left: 0; /* Align to the left */
+  right: 0; /* Align to the right */
+  height: 40px; /* Height of the marquee */
+  line-height: 40px; /* Center text vertically */
+  z-index: 999; /* Ensure it appears above other content */
+}
+
+.marquee p {
+  display: inline-block; /* Inline block to allow scrolling */
+  animation: marquee 10s linear infinite; /* Animation for scrolling effect */
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+      transform: translateX(100%); /* Start from the right */
+  }
+  100% {
+      transform: translateX(-100%); /* End at the left */
+  }
+}
+
 .container {
   display: flex;
   align-items: flex-start; /* Align the sidebar and content to the top */
   justify-content: center; /* Center the main content */
-  margin-top: 80px; /* Space for the navbar */
+  margin-top: 140px; /* Space for the navbar and marquee */
   width: 100%; /* Full width of the screen */
   max-width: 1200px; /* Optional: limit max width for large screens */
 }
@@ -274,34 +304,6 @@ body {
   color: #00796b;
   text-align: center;
   font-size: 1.2em;
-  display: none;
-  transition: opacity 0.5s ease;
-}
-
-/* Show the message */
-.show {
-  display: block;
-  opacity: 1;
-}
-
-.hide {
-  opacity: 0;
-}
-/* Highlight selected level */
-.level-selection label input[type="radio"]:checked + span {
-  font-weight: bold;
-  color: #17a2b8; /* Highlight color */
-}
-
-/* Dynamic achievement message style */
-.achievement-message {
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #e0f7fa;
-  color: #00796b;
-  text-align: center;
-  font-size: 1.2em;
   display: none; /* Initially hidden */
   transition: opacity 0.5s ease;
   position: relative; /* For positioning */
@@ -314,6 +316,16 @@ body {
   opacity: 1;
 }
 
+.hide {
+  opacity: 0;
+}
+
+/* Highlight selected level */
+.level-selection label input[type="radio"]:checked + span {
+  font-weight: bold;
+  color: #17a2b8; /* Highlight color */
+}
+
 /* Optional: Styling for hover effects on buttons */
 .content button:hover {
   background-color: #138496; /* Darker shade on hover */
@@ -321,5 +333,5 @@ body {
 
 /* Improved styling for typing text */
 .typing-text p span {
-  transition: color 0.3s; /* Smooth transition for color changes */
+  transition: color 0.6s; /* Smooth transition for color changes */
 }
