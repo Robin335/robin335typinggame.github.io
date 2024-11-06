@@ -122,7 +122,7 @@ body {
   background: #b8b1b1;
   border-radius: 10px;
   margin-left: 400px; /* Push the wrapper to the right so it doesn't overlap the sidebar */
-  margin-top: 20px; /* Space for the navbar */
+  margin-top: 5px; /* Space for the navbar */
   top: 0;
   height: max-content;
   max-width: 800px; /* Optional: limit width of the content */
@@ -341,7 +341,6 @@ body {
   font-weight: bold;
   color: #ffffff;
   background-color: #17a2b8; /* Primary button color */
-  border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -362,7 +361,7 @@ body {
 
 #start-game-btn::after {
   content: "▶";
-  font-size: 14px;
+  font-size: 12px;
   margin-left: 10px;
   display: inline-block;
   transition: transform 0.3s ease;
@@ -370,4 +369,297 @@ body {
 
 #start-game-btn:hover::after {
   transform: translateX(4px); /* Arrow moves slightly on hover */
+}
+/* Styling for the Level Requirements display */
+.level-requirements {
+    background-color: #e8f4f8;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
+    text-align: center;
+    color: #333;
+}
+
+.level-requirements p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#level-criteria {
+    font-size: 18px;
+    font-weight: normal;
+    color: #00796b; /* Adds a distinct color to the requirements */
+    margin-top: 4px;
+}
+
+/* Styling for the Mute button */
+#mute-btn {
+  padding: 8px 16px;
+  background-color: #f0ad4e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  margin-left: 2px;
+}
+
+#mute-btn:hover {
+  background-color: #ec971f;
+}
+/* General styles for the level selection area */
+.level-selection {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px; /* Add space between each label */
+  margin-top: 10px; /* Space between navbar and level selection */
+}
+
+/* Style for the labels */
+.level-selection label {
+  font-size: 18px;
+  color: #06432b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #f4f4f4; /* Light background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style the radio buttons */
+.level-selection input[type="radio"] {
+  display: none; /* Hide the default radio button */
+}
+
+/* Style when the radio button is checked */
+.level-selection input[type="radio"]:checked + span {
+  background-color: #17a2b8; /* Highlight color for selected option */
+  color: white;
+  border-radius: 8px;
+}
+
+/* Style when the radio button is hovered */
+.level-selection label:hover {
+  background-color: #e0f7fa; /* Light hover effect */
+}
+
+/* Style the labels when active */
+.level-selection input[type="radio"]:checked + span {
+  font-weight: bold;
+}
+
+/* Custom span around the radio button text */
+.level-selection span {
+  margin-left: 8px;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+/* Optional: Hover effect for the selected label */
+.level-selection label:hover input[type="radio"]:not(:checked) + span {
+  background-color: #e0f7fa; /* Light hover effect */
+  cursor: pointer;
+}
+
+/* Style when the radio button is checked */
+.level-selection input[type="radio"]:checked + span {
+  background-color: #0b8a9a; /* New highlight color */
+  color: #ffffff; /* Text color when selected */
+  border-radius: 8px;
+  font-weight: bold; /* Bold the text */
+}
+/* Highlight the selected level */
+.level-selection label.selected {
+  background-color: #0cdfff; /* Highlight color */
+  color: white; /* Text color when selected */
+  font-weight: bold; /* Bold text */
+}
+
+/* Style when the radio button is hovered */
+.level-selection label:hover {
+  background-color: #e0f7fa; /* Light hover effect */
+}
+/* Style the .user-info container */
+/* .user-info container styles */
+.user-info {
+  text-align: center; /* Center text inside the container */
+  padding: 15px;
+  top: 118px;
+  margin-bottom: 2px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 40px; /* Add some space from the right edge */
+  position: absolute; /* Positioning it absolutely to move it far right */
+  right: 0; /* Align it to the far right of the page */
+}
+
+
+/* Style the input and button elements */
+#username {
+  padding: 10px;
+  margin: 10px 0;
+  width: 200px; /* Set a fixed width */
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+#start-game-btnz {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#start-game-btnz:hover {
+  background-color: #45a049;
+}
+/* Modal styles */
+#resultsModal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 60%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 300px;
+  background-color: rgba(6, 15, 27, 0.8);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  z-index: 1000;
+}
+
+/* Modal content styling */
+#resultsModal .modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Title styling */
+#resultsModal h2 {
+  margin-bottom: 20px;
+}
+
+/* Paragraph styling */
+#resultsModal p {
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 1;
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  /* Adjust container margin for medium screens */
+  .container {
+    margin-top: 160px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 100%;
+    position: static; /* Make it inline with the content */
+    margin-bottom: 20px;
+  }
+
+  /* Main content */
+  .wrapper {
+    margin-left: 0; /* Remove left margin */
+    max-width: 100%; /* Full width */
+  }
+
+  /* .user-info placement */
+  .user-info {
+    right: 15px;
+    position: static;
+    margin: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  /* Main content */
+  .wrapper {
+    padding: 15px;
+  }
+
+  /* Modal */
+  #resultsModal {
+    width: 90%;
+    top: 50%; /* Center vertically on smaller screens */
+    right: auto;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  }
+
+  /* Progress bar adjustments */
+  .progress-bar {
+    height: 6px;
+  }
+
+  .progress {
+    width: 0%; /* Reset width */
+  }
+
+  /* Level selection */
+  .level-selection label {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Main content font size adjustments */
+  body {
+    font-size: 14px;
+  }
+
+  /* Sidebar adjustments */
+  .sidebar {
+    font-size: 13px;
+  }
+
+  /* Content box adjustments */
+  .content-box .typing-text p {
+    font-size: 18px;
+  }
+
+  /* Modal button */
+  #resultsModal button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  /* Reduce space between items in result details */
+  .result-details li {
+    padding-left: 15px;
+  }
 }
