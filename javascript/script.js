@@ -404,7 +404,6 @@ document.getElementById('close-modal-btn').addEventListener('click', function() 
 });
 
 
-// Modify checkLevelPass() to store results
 function checkLevelPass() {
   const selectedLevel = getSelectedLevel();
   const criteria = levelCriteria[selectedLevel];
@@ -423,11 +422,12 @@ function checkLevelPass() {
 
   if (wpm >= criteria.minWPM && accuracy >= criteria.minAccuracy) {
     notifyUser(`Congratulations, ${playerName}! You've passed the level!`);
-    passLevelSound.play(); // Play pass level sound
+    playSound(passLevelSound);
+    displayResults(); // Display results after passing each level
     advanceToNextLevel();
   } else {
     notifyUser(`Sorry, ${playerName}. You did not pass the ${selectedLevel} level. Start Again!`);
-    failLevelSound.play(); // Play fail level sound
+    playSound(failLevelSound);
   }
 }
 
@@ -439,11 +439,9 @@ function advanceToNextLevel() {
     const nextLevel = levels[currentLevelIndex + 1];
     setLevel(nextLevel);
     notifyUser(`You are now at the ${nextLevel} level!`);
-    levelUpSound.play(); // Play level up sound
-    resetGame(); // Reset game for the next level
+    playSound(levelUpSound);
+    resetGame();
   } else {
     notifyUser(`${playerName}, you've reached the highest level!`);
-    displayResults(); // Display final results after reaching the highest level
   }
 }
-
